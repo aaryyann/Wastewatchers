@@ -11,7 +11,6 @@
     "db:studio": "npx drizzle-kit studio"
   },
   "dependencies": {
-    "@dimo-network/dimo-node-sdk": "^1.2.0",
     "@ethsign/sp-sdk": "^0.7.7",
     "@google/generative-ai": "^0.19.0",
     "@lit-protocol/lit-node-client": "^6.11.0",
