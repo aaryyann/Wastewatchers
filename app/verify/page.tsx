@@ -36,8 +36,8 @@ export default function VerifyWastePage() {
       // This is where you would integrate with Galadriel or your AI service
       const mockResult = {
         wasteType: 'Plastic',
-        quantity: '2.5 kg',
-        confidence: 0.92
+        quantity: '0.5 kg',
+        confidence: 0.7
       }
       setVerificationResult(mockResult)
       setVerificationStatus('success')

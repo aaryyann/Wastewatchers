@@ -9,8 +9,8 @@ import { createUser, getUserByEmail, createReport, getRecentReports } from '@/ut
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast'
 
-const geminiApiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
-const googleMapsApiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+const geminiApiKey = process.env.GEMINI_API_KEY!;
+const googleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY!;
 
 const libraries: Libraries = ['places'];
 
@@ -46,7 +46,7 @@ export default function ReportPage() {
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: "AIzaSyATmaL_VLv_B4R8vIr6SnhR2xIA5Cngrrk",
+    googleMapsApiKey: googleMapsApiKey,
     libraries: libraries
   });
 
@@ -99,7 +99,7 @@ export default function ReportPage() {
     setVerificationStatus('verifying')
     
     try {
-      const genAI = new GoogleGenerativeAI("AIzaSyDg-LoC9hkPxQJ_0VsiQlTMlC-bSyxecdo");
+      const genAI = new GoogleGenerativeAI(geminiApiKey);
       const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
       const base64Data = await readFileAsBase64(file);

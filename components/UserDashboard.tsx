@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { getOrCreateReward, getUnreadNotifications, markNotificationAsRead } from '@/utils/db/actions';
 

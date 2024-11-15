@@ -1,4 +1,3 @@
-
 'use client'
 import { useState, useEffect } from 'react'
 import { getAllRewards, getUserByEmail } from '@/utils/db/actions'

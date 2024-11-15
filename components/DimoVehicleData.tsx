@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import { Car } from 'lucide-react';
-import { getUserDevices, getDeviceData } from '@/utils/dimoApi';
+import { getUserDevices, getDeviceData } from '../utils/dimoApi';
 
 interface VehicleData {
   vin: string;
