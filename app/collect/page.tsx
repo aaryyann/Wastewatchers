@@ -17,7 +17,8 @@ type CollectionTask = {
   amount: string
   status: 'pending' | 'in_progress' | 'completed' | 'verified'
   date: string
-  collectorId: number | null
+  collectorId: number | null,
+  reward : number
 }
 
 const ITEMS_PER_PAGE = 5
@@ -169,7 +170,7 @@ export default function CollectPage() {
 
           // Save the collected waste
           await saveCollectedWaste(selectedTask.id, user.id, parsedResult)
-
+          
           setReward(earnedReward)
           toast.success(`Verification successful! You earned ${earnedReward} tokens!`, {
             duration: 5000,
@@ -358,6 +359,10 @@ export default function CollectPage() {
             <Button onClick={() => setSelectedTask(null)} variant="outline" className="w-full mt-2">
               Close
             </Button>
+          </div>
+          <div>
+            {/* Render reward */}
+            <p>Current Reward: {reward}</p>
           </div>
         </div>
       )}
