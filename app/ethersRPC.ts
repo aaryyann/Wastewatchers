@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// @ts-nocheck
+
 import type { IProvider } from "@web3auth/base";
 import { ethers } from "ethers";
 
