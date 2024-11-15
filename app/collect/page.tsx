@@ -4,6 +4,7 @@ import { Trash2, MapPin, CheckCircle, Clock, Upload, Loader, Calendar, Weight, S
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { toast } from 'react-hot-toast'
+import Image from 'next/image'
 import { getWasteCollectionTasks, updateTaskStatus, saveReward, saveCollectedWaste, getUserByEmail } from '@/utils/db/actions'
 import { GoogleGenerativeAI } from "@google/generative-ai"
 
@@ -332,7 +333,8 @@ export default function CollectPage() {
               </div>
             </div>
             {verificationImage && (
-              <img src={verificationImage} alt="Verification" className="mb-4 rounded-md w-full" />
+              <Image src={verificationImage} alt="Verification" className="mb-4 rounded-md w-full" width={500}  // You must provide width and height for Next.js Image component
+              height={300}/>
             )}
             <Button
               onClick={handleVerify}
