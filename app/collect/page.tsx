@@ -4,7 +4,6 @@ import { Trash2, MapPin, CheckCircle, Clock, Upload, Loader, Calendar, Weight, S
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { toast } from 'react-hot-toast'
-import Image from 'next/image'
 import { getWasteCollectionTasks, updateTaskStatus, saveReward, saveCollectedWaste, getUserByEmail } from '@/utils/db/actions'
 import { GoogleGenerativeAI } from "@google/generative-ai"
 
@@ -149,11 +148,13 @@ export default function CollectPage() {
 
       const result = await model.generateContent([prompt, ...imageParts])
       const response = await result.response;
+      
 
       const text = await response.text();
+      const trimmedString = text.trim().slice(text.indexOf('{'), text.lastIndexOf('}') + 1);
       console.log(text)
       try {
-        const parsedResult = JSON.parse(text);
+        const parsedResult = JSON.parse(trimmedString);
         console.log(parsedResult)
         setVerificationResult({
           wasteTypeMatch: parsedResult.wasteTypeMatch,
@@ -278,7 +279,7 @@ export default function CollectPage() {
                     <span className="text-yellow-600 text-sm font-medium">In progress by another collector</span>
                   )}
                   {task.status === 'verified' && (
-                    <span className="text-green-600 text-sm font-medium">Reward Earned</span>
+                    <span className="text-blue-600 text-sm font-medium">Reward Earned</span>
                   )}
                 </div>
               </div>
@@ -333,8 +334,7 @@ export default function CollectPage() {
               </div>
             </div>
             {verificationImage && (
-              <Image src={verificationImage} alt="Verification" className="mb-4 rounded-md w-full" width={500}  // You must provide width and height for Next.js Image component
-              height={300}/>
+              <img src={verificationImage} alt="Verification" className="mb-4 rounded-md w-full" />
             )}
             <Button
               onClick={handleVerify}
@@ -349,7 +349,7 @@ export default function CollectPage() {
               ) : 'Verify Collection'}
             </Button>
             {verificationStatus === 'success' && verificationResult && (
-              <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-md">
+              <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-md">
                 <p>Waste Type Match: {verificationResult.wasteTypeMatch ? 'Yes' : 'No'}</p>
                 <p>Quantity Match: {verificationResult.quantityMatch ? 'Yes' : 'No'}</p>
                 <p>Confidence: {(verificationResult.confidence * 100).toFixed(2)}%</p>
@@ -361,10 +361,6 @@ export default function CollectPage() {
             <Button onClick={() => setSelectedTask(null)} variant="outline" className="w-full mt-2">
               Close
             </Button>
-          </div>
-          <div>
-            {/* Render reward */}
-            <p>Current Reward: {reward}</p>
           </div>
         </div>
       )}
@@ -383,7 +379,7 @@ function StatusBadge({ status }: { status: CollectionTask['status'] }) {
   const statusConfig = {
     pending: { color: 'bg-yellow-100 text-yellow-800', icon: Clock },
     in_progress: { color: 'bg-blue-100 text-blue-800', icon: Trash2 },
-    completed: { color: 'bg-green-100 text-green-800', icon: CheckCircle },
+    completed: { color: 'bg-blue-100 text-blue-800', icon: CheckCircle },
     verified: { color: 'bg-purple-100 text-purple-800', icon: CheckCircle },
   }
 

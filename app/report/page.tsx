@@ -1,16 +1,18 @@
+
 'use client'
 import { useState, useCallback, useEffect } from 'react'
-import {  MapPin, Upload, CheckCircle, Loader } from 'lucide-react'
+import { Trash2, MapPin, Upload, CheckCircle, XCircle, Loader } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { StandaloneSearchBox,  useJsApiLoader } from '@react-google-maps/api'
+import { StandaloneSearchBox, LoadScript, useJsApiLoader } from '@react-google-maps/api'
 import { Libraries } from '@react-google-maps/api';
-import { createUser, getUserByEmail, createReport, getRecentReports } from '@/utils/db/actions';
+import { createUser, getUserByEmail, createReport, updateRewardPoints, createNotification, getRecentReports, createTransaction } from '@/utils/db/actions';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast'
 
-const geminiApiKey = process.env.GEMINI_API_KEY!;
-const googleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY!;
+// Make sure to set your Gemini API key and Google Maps API key in your environment variables
+const geminiApiKey = process.env.GEMINI_API_KEY;
+const googleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY;
 
 const libraries: Libraries = ['places'];
 
@@ -46,7 +48,7 @@ export default function ReportPage() {
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: googleMapsApiKey,
+    googleMapsApiKey: googleMapsApiKey!,
     libraries: libraries
   });
 
@@ -99,7 +101,7 @@ export default function ReportPage() {
     setVerificationStatus('verifying')
     
     try {
-      const genAI = new GoogleGenerativeAI(geminiApiKey);
+      const genAI = new GoogleGenerativeAI(geminiApiKey!);
       const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
       const base64Data = await readFileAsBase64(file);
@@ -120,17 +122,20 @@ export default function ReportPage() {
         
         Respond in JSON format like this:
         {
-          "wasteType": "type of waste",
-          "quantity": "estimated quantity with unit",
-          "confidence": confidence level as a number between 0 and 1
+          wasteType: "type of waste",
+          quantity: "estimated quantity with unit",
+          confidence: confidence level as a number between 0 and 1
         }`;
 
       const result = await model.generateContent([prompt, ...imageParts]);
       const response = await result.response;
-      const text = response.text();
+      const text =  await response.text();
+      const trimmedString = text.trim().slice(text.indexOf('{'), text.lastIndexOf('}') + 1);
+      
       
       try {
-        const parsedResult = JSON.parse(text);
+        const parsedResult = JSON.parse(trimmedString);
+        console.log(parsedResult)
         if (parsedResult.wasteType && parsedResult.quantity && parsedResult.confidence) {
           setVerificationResult(parsedResult);
           setVerificationStatus('success');
@@ -186,7 +191,8 @@ export default function ReportPage() {
       setVerificationStatus('idle');
       setVerificationResult(null);
       
-
+      // The points are now awarded in the createReport function, so we don't need to do it here
+      // We'll just display a success message
       toast.success(`Report submitted successfully! You've earned points for reporting waste.`);
     } catch (error) {
       console.error('Error submitting report:', error);
@@ -198,6 +204,7 @@ export default function ReportPage() {
 
   useEffect(() => {
     const checkUser = async () => {
+      // This is a simple example. In a real app, you'd use a proper authentication system.
       const email = localStorage.getItem('userEmail');
       if (email) {
         let user = await getUserByEmail(email);
@@ -206,6 +213,7 @@ export default function ReportPage() {
         }
         setUser(user);
         
+        // Fetch recent reports
         const recentReports = await getRecentReports();
         const formattedReports = recentReports.map(report => ({
           ...report,
@@ -213,7 +221,7 @@ export default function ReportPage() {
         }));
         setReports(formattedReports);
       } else {
-        router.push('/login'); 
+        router.push('/login'); // Redirect to a login page if not authenticated
       }
     };
     checkUser();

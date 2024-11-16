@@ -59,7 +59,7 @@ export default function VerifyWastePage() {
               <div className="flex text-sm text-gray-600">
                 <label
                   htmlFor="waste-image"
-                  className="relative cursor-pointer bg-white rounded-md font-medium text-green-600 hover:text-green-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-green-500"
+                  className="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500"
                 >
                   <span>Upload a file</span>
                   <input id="waste-image" name="waste-image" type="file" className="sr-only" onChange={handleFileChange} accept="image/*" />
@@ -77,7 +77,7 @@ export default function VerifyWastePage() {
           </div>
         )}
         
-        <Button type="submit" className="w-full bg-green-600 hover:bg-green-700 text-white" disabled={!file || verificationStatus === 'verifying'}>
+        <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white" disabled={!file || verificationStatus === 'verifying'}>
           {verificationStatus === 'verifying' ? (
             <>
               <Loader className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" />
@@ -88,14 +88,14 @@ export default function VerifyWastePage() {
       </form>
 
       {verificationStatus === 'success' && verificationResult && (
-        <div className="bg-green-50 border-l-4 border-green-400 p-4 mb-8">
+        <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-8">
           <div className="flex">
             <div className="flex-shrink-0">
-              <CheckCircle className="h-5 w-5 text-green-400" />
+              <CheckCircle className="h-5 w-5 text-blue-400" />
             </div>
             <div className="ml-3">
-              <h3 className="text-sm font-medium text-green-800">Verification Successful</h3>
-              <div className="mt-2 text-sm text-green-700">
+              <h3 className="text-sm font-medium text-blue-800">Verification Successful</h3>
+              <div className="mt-2 text-sm text-blue-700">
                 <p>Waste Type: {verificationResult.wasteType}</p>
                 <p>Quantity: {verificationResult.quantity}</p>
                 <p>Confidence: {(verificationResult.confidence * 100).toFixed(2)}%</p>

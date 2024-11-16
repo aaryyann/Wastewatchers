@@ -15,11 +15,11 @@ const poppins = Poppins({
 function AnimatedGlobe() {
   return (
     <div className="relative w-32 h-32 mx-auto mb-8">
-      <div className="absolute inset-0 rounded-full bg-green-500 opacity-20 animate-pulse"></div>
-      <div className="absolute inset-2 rounded-full bg-green-400 opacity-40 animate-ping"></div>
-      <div className="absolute inset-4 rounded-full bg-green-300 opacity-60 animate-spin"></div>
-      <div className="absolute inset-6 rounded-full bg-green-200 opacity-80 animate-bounce"></div>
-      <Leaf className="absolute inset-0 m-auto h-16 w-16 text-green-600 animate-pulse" />
+      <div className="absolute inset-0 rounded-full bg-blue-500 opacity-20 animate-pulse"></div>
+      <div className="absolute inset-2 rounded-full bg-blue-400 opacity-40 animate-ping"></div>
+      <div className="absolute inset-4 rounded-full bg-blue-300 opacity-60 animate-spin"></div>
+      <div className="absolute inset-6 rounded-full bg-blue-200 opacity-80 animate-bounce"></div>
+      <Leaf className="absolute inset-0 m-auto h-16 w-16 text-blue-600 animate-pulse" />
     </div>
   )
 }
@@ -82,19 +82,19 @@ export default function Home() {
       <section className="text-center mb-20">
         <AnimatedGlobe />
         <h1 className="text-4xl font-bold mb-6 text-gray-800 tracking-tight">
-          Waste-To-Wonder <span className="text-green-600">: A Heroic Journey in Waste Management</span>
+          Waste-To-Wonder <span className="text-blue-600">: A Heroic Journey in Waste Management</span>
         </h1>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed mb-8">
         Be a part of our mission to make waste management more efficient and rewarding!
         </p>
         {!loggedIn ? (
-          <Button onClick={login} className="bg-green-600 hover:bg-green-700 text-white text-lg py-6 px-10 rounded-full font-medium transition-all duration-300 ease-in-out transform hover:scale-105">
+          <Button onClick={login} className="bg-blue-600 hover:bg-blue-700 text-white text-lg py-6 px-10 rounded-full font-medium transition-all duration-300 ease-in-out transform hover:scale-105">
             Get Started
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
         ) : (
           <Link href="/report">
-            <Button className="bg-green-600 hover:bg-green-700 text-white text-lg py-6 px-10 rounded-full font-medium transition-all duration-300 ease-in-out transform hover:scale-105">
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white text-lg py-6 px-10 rounded-full font-medium transition-all duration-300 ease-in-out transform hover:scale-105">
               Report Waste
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
@@ -140,7 +140,7 @@ function ImpactCard({ title, value, icon: Icon }: { title: string; value: string
   
   return (
     <div className="p-6 rounded-xl bg-gray-50 border border-gray-100 transition-all duration-300 ease-in-out hover:shadow-md">
-      <Icon className="h-10 w-10 text-green-500 mb-4" />
+      <Icon className="h-10 w-10 text-blue-500 mb-4" />
       <p className="text-3xl font-bold mb-2 text-gray-800">{formattedValue}</p>
       <p className="text-sm text-gray-600">{title}</p>
     </div>
@@ -150,8 +150,8 @@ function ImpactCard({ title, value, icon: Icon }: { title: string; value: string
 function FeatureCard({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: string }) {
   return (
     <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 ease-in-out flex flex-col items-center text-center">
-      <div className="bg-green-100 p-4 rounded-full mb-6">
-        <Icon className="h-8 w-8 text-green-600" />
+      <div className="bg-blue-100 p-4 rounded-full mb-6">
+        <Icon className="h-8 w-8 text-blue-600" />
       </div>
       <h3 className="text-xl font-semibold mb-4 text-gray-800">{title}</h3>
       <p className="text-gray-600 leading-relaxed">{description}</p>

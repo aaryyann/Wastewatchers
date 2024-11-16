@@ -16,7 +16,7 @@ export default function SettingsPage() {
     name: 'John Doe',
     email: 'john.doe@example.com',
     phone: '+1 234 567 8900',
-    address: '123 Eco Street, Green City, 12345',
+    address: '123 Eco Street, blue City, 12345',
     notifications: true,
   })
 
@@ -49,7 +49,7 @@ export default function SettingsPage() {
               name="name"
               value={settings.name}
               onChange={handleInputChange}
-              className="pl-10 w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500"
+              className="pl-10 w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
             />
             <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
           </div>
@@ -64,7 +64,7 @@ export default function SettingsPage() {
               name="email"
               value={settings.email}
               onChange={handleInputChange}
-              className="pl-10 w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500"
+              className="pl-10 w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
             />
             <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
           </div>
@@ -79,7 +79,7 @@ export default function SettingsPage() {
               name="phone"
               value={settings.phone}
               onChange={handleInputChange}
-              className="pl-10 w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500"
+              className="pl-10 w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
             />
             <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
           </div>
@@ -94,7 +94,7 @@ export default function SettingsPage() {
               name="address"
               value={settings.address}
               onChange={handleInputChange}
-              className="pl-10 w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500"
+              className="pl-10 w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
             />
             <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
           </div>
@@ -107,14 +107,14 @@ export default function SettingsPage() {
             name="notifications"
             checked={settings.notifications}
             onChange={handleInputChange}
-            className="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
+            className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
           />
           <label htmlFor="notifications" className="ml-2 block text-sm text-gray-700">
             Receive email notifications
           </label>
         </div>
 
-        <Button type="submit" className="w-full bg-green-500 hover:bg-green-600 text-white">
+        <Button type="submit" className="w-full bg-blue-500 hover:bg-blue-600 text-white">
           <Save className="w-4 h-4 mr-2" />
           Save Changes
         </Button>

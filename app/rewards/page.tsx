@@ -150,13 +150,13 @@ export default function RewardsPage() {
     <div className="p-8 max-w-4xl mx-auto">
       <h1 className="text-3xl font-semibold mb-6 text-gray-800">Rewards</h1>
       
-      <div className="bg-white p-6 rounded-xl shadow-lg flex flex-col justify-between h-full border-l-4 border-green-500 mb-8">
+      <div className="bg-white p-6 rounded-xl shadow-lg flex flex-col justify-between h-full border-l-4 border-blue-500 mb-8">
         <h2 className="text-xl font-semibold mb-4 text-gray-800">Reward Balance</h2>
         <div className="flex items-center justify-between mt-auto">
           <div className="flex items-center">
-            <Coins className="w-10 h-10 mr-3 text-green-500" />
+            <Coins className="w-10 h-10 mr-3 text-blue-500" />
             <div>
-              <span className="text-4xl font-bold text-green-500">{balance}</span>
+              <span className="text-4xl font-bold text-blue-500">{balance}</span>
               <p className="text-sm text-gray-500">Available Points</p>
             </div>
           </div>
@@ -172,7 +172,7 @@ export default function RewardsPage() {
                 <div key={transaction.id} className="flex items-center justify-between p-4 border-b border-gray-200 last:border-b-0">
                   <div className="flex items-center">
                     {transaction.type === 'earned_report' ? (
-                      <ArrowUpRight className="w-5 h-5 text-green-500 mr-3" />
+                      <ArrowUpRight className="w-5 h-5 text-blue-500 mr-3" />
                     ) : transaction.type === 'earned_collect' ? (
                       <ArrowUpRight className="w-5 h-5 text-blue-500 mr-3" />
                     ) : (
@@ -183,7 +183,7 @@ export default function RewardsPage() {
                       <p className="text-sm text-gray-500">{transaction.date}</p>
                     </div>
                   </div>
-                  <span className={`font-semibold ${transaction.type.startsWith('earned') ? 'text-green-500' : 'text-red-500'}`}>
+                  <span className={`font-semibold ${transaction.type.startsWith('earned') ? 'text-blue-500' : 'text-red-500'}`}>
                     {transaction.type.startsWith('earned') ? '+' : '-'}{transaction.amount}
                   </span>
                 </div>
@@ -202,7 +202,7 @@ export default function RewardsPage() {
                 <div key={reward.id} className="bg-white p-4 rounded-xl shadow-md">
                   <div className="flex justify-between items-center mb-2">
                     <h3 className="text-lg font-semibold text-gray-800">{reward.name}</h3>
-                    <span className="text-green-500 font-semibold">{reward.cost} points</span>
+                    <span className="text-blue-500 font-semibold">{reward.cost} points</span>
                   </div>
                   <p className="text-gray-600 mb-2">{reward.description}</p>
                   <p className="text-sm text-gray-500 mb-4">{reward.collectionInfo}</p>
@@ -210,7 +210,7 @@ export default function RewardsPage() {
                     <div className="space-y-2">
                       <Button 
                         onClick={handleRedeemAllPoints}
-                        className="w-full bg-green-500 hover:bg-green-600 text-white"
+                        className="w-full bg-blue-500 hover:bg-blue-600 text-white"
                         disabled={balance === 0}
                       >
                         <Gift className="w-4 h-4 mr-2" />
@@ -220,7 +220,7 @@ export default function RewardsPage() {
                   ) : (
                     <Button 
                       onClick={() => handleRedeemReward(reward.id)}
-                      className="w-full bg-green-500 hover:bg-green-600 text-white"
+                      className="w-full bg-blue-500 hover:bg-blue-600 text-white"
                       disabled={balance < reward.cost}
                     >
                       <Gift className="w-4 h-4 mr-2" />

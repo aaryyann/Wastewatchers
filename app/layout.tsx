@@ -27,7 +27,7 @@ export default function RootLayout({
           console.log('user from layout', user);
           
           if (user) {
-            const availableRewards = await getAvailableRewards(user.id) as any
+            const availableRewards = await getAvailableRewards(user.id);
             console.log('availableRewards from layout', availableRewards);
                         setTotalEarnings(availableRewards)
           }
