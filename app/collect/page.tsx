@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
+import Img from 'next/image'
 import { useState, useEffect } from 'react'
 import { Trash2, MapPin, CheckCircle, Clock, Upload, Loader, Calendar, Weight, Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -334,7 +336,7 @@ export default function CollectPage() {
               </div>
             </div>
             {verificationImage && (
-              <img src={verificationImage} alt="Verification" className="mb-4 rounded-md w-full" />
+              <Img src={verificationImage} alt="Verification" className="mb-4 rounded-md w-full" />
             )}
             <Button
               onClick={handleVerify}

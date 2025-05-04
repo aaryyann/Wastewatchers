@@ -1,12 +1,13 @@
-// @ts-nocheck
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
 import { Leaf } from 'lucide-react'
-import ContractInteraction from './ContractInteraction'
 import { encryptWasteData, submitEncryptedWasteData, performDataAnalysis } from '@/utils/litProtocol'
 import { useSessionSigs } from '@/hooks/useSessionSigs'
+import ContractInteraction from './ContractInteraction';
 
 // Custom leaf icon
 const leafIcon = new L.Icon({
@@ -20,8 +21,7 @@ const leafIcon = new L.Icon({
 })
 
 export default function Map() {
-  const [encryptedWastePoints, setEncryptedWastePoints] = useState([]);
-  const [insights, setInsights] = useState(null);
+  const [insights, setInsights] = useState<any>(null);
   const sessionSigs = useSessionSigs();
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export default function Map() {
     fetchEncryptedWastePoints();
   }, []);
 
-  const handleWasteReport = async (location, quantity) => {
+  const handleWasteReport = async (location: any, quantity: any) => {
     const wasteData = { location, quantity };
     const encryptedData = await encryptWasteData(wasteData);
     await submitEncryptedWasteData(encryptedData);
@@ -55,7 +55,7 @@ export default function Map() {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          {insights && insights.hotspotLocations.map((point, index) => (
+          {insights && insights.hotspotLocations.map((point: { lat: any; lng: any; }, index: any) => (
             <Marker key={index} position={[point.lat, point.lng]} icon={leafIcon}>
               <Popup>
                 Waste Hotspot <br />

@@ -1,10 +1,12 @@
-// @ts-nocheck
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @next/next/no-img-element */
+
 'use client'
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { usePathname } from 'next/navigation'
 import { Button } from "@/components/ui/button"
-import { Menu, Coins, Leaf, Search, Bell, User, ChevronDown, LogIn } from "lucide-react"
+import { Menu, Coins, Search, Bell, User, ChevronDown, LogIn } from "lucide-react"
 import { 
   DropdownMenu, 
   DropdownMenuContent, 
@@ -46,12 +48,21 @@ interface HeaderProps {
   totalEarnings: number;
 }
 
-export default function Header({ onMenuClick, totalEarnings }: HeaderProps) {
+interface Notification {
+    id: number;
+    createdAt: Date;
+    userId: number;
+    message: string;
+    type: string;
+    isRead: boolean;
+  
+}
+
+export default function Header({ onMenuClick }: HeaderProps) {
   const [provider, setProvider] = useState<IProvider | null>(null);
   const [loggedIn, setLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
   const [userInfo, setUserInfo] = useState<any>(null);
-  const pathname = usePathname()
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const isMobile = useMediaQuery("(max-width: 768px)")
   const [balance, setBalance] = useState(0)
@@ -208,7 +219,7 @@ export default function Header({ onMenuClick, totalEarnings }: HeaderProps) {
             <Menu className="h-6 w-6" />
           </Button>
           <Link href="/" className="flex items-center">
-            <img src="https://i.pinimg.com/474x/5c/87/65/5c87652850b97fefc5c1d41a15d17688.jpg" alt="" height="100" width="100" className="md:h-8 md:w-8 mr-1 md:mr-2 rounded-full" srcset="" />
+            <img src="https://i.pinimg.com/474x/5c/87/65/5c87652850b97fefc5c1d41a15d17688.jpg" alt="" height="100" width="100" className="md:h-8 md:w-8 mr-1 md:mr-2 rounded-full" />
     
             <div className="flex flex-col">
               <span className="font-bold text-base md:text-lg text-white">WasteWatchers</span>

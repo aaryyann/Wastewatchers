@@ -1,19 +1,21 @@
-// @ts-nocheck
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { useState } from 'react';
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { performDataAnalysis, proposeAndSignInitiative } from '@/utils/litProtocol';
 import { useSessionSigs } from '@/hooks/useSessionSigs';
 
-export default function ContractInteraction({ onWasteReport }) {
+export default function ContractInteraction({ onWasteReport } : any) {
   const [location, setLocation] = useState('');
   const [quantity, setQuantity] = useState('');
-  const [insights, setInsights] = useState(null);
+  const [insights, setInsights] = useState<any>(null);
   const [proposal, setProposal] = useState('');
-  const [proposalResult, setProposalResult] = useState(null);
+  const [proposalResult, setProposalResult] = useState<any>(null);
   const sessionSigs = useSessionSigs();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     onWasteReport(location, quantity);
     setLocation('');

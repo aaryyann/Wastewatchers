@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
 import { useState, useEffect } from "react"
@@ -16,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const [totalEarnings, setTotalEarnings] = useState(0)
+  const [totalEarnings, setTotalEarnings] = useState<any>(null)
 
   useEffect(() => {
     const fetchTotalEarnings = async () => {
